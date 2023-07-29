@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const CompanyList = ({ handleLogout, toggleScreen }) => {
 
-const companiesData = [
+const [companiesData, setCompaniesData] = useState([
   {
     id: 1,
     name: '企業A',
@@ -33,7 +33,7 @@ const companiesData = [
     memo: '企業Cに関するメモです。',
     selectionFlow: '1次面接 → SPI試験 → 最終面接',
   },
-];
+]);
 
   const handleAddCompany = () => {
     // 追加ボタンの処理を実装
@@ -41,23 +41,58 @@ const companiesData = [
   };
 
   const [selectedCompany, setSelectedCompany] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
 
   const handleCompanyClick = (company) => {
     setSelectedCompany(company);
   };
 
+   // 企業を削除する
+  const handleDeleteCompany = () => {
+    if (selectedCompany) {
+      setIsDeleteModalOpen(true);
+    }
+  };
+
+  // 保存する
+  const handleSaveChanges = () => {
+    if (selectedCompany) {
+      setIsSaveModalOpen(true);
+    }
+  };
+
+  // 削除モーダルの確認後の処理
+  const handleConfirmDelete = () => {
+    if (selectedCompany) {
+      // selectedCompanyのidと一致しない企業情報をフィルタリング
+      const updatedCompanies = companiesData.filter((company) => company.id !== selectedCompany.id);
+      // 保存したデータを更新
+      setCompaniesData(updatedCompanies);
+      handleCloseModal();
+    }
+    setIsDeleteModalOpen(false);
+  };
+
+  // 保存モーダルの確認後の処理
+  const handleConfirmSave = () => {
+    if (selectedCompany) {
+      // selectedCompanyのidと一致する企業情報を探す
+      const updatedCompanies = companiesData.map((company) =>
+        company.id === selectedCompany.id ? selectedCompany : company
+      );
+      // 保存したデータを更新
+      setCompaniesData(updatedCompanies);
+      handleCloseModal();
+    }
+    setIsSaveModalOpen(false);
+  };
+
+  // モーダルを閉じる
   const handleCloseModal = () => {
     setSelectedCompany(null);
-  };
-
-  const handleSaveChanges = () => {
-    // 保存ボタンの処理を実装
-    console.log('変更内容を保存します');
-  };
-
-  const handleDeleteCompany = () => {
-    // 削除ボタンの処理を実装
-    console.log('企業情報を削除します');
+    setIsDeleteModalOpen(false);
+    setIsSaveModalOpen(false);
   };
 
   const handleScheduleButtonClick = () => {
@@ -147,6 +182,33 @@ const companiesData = [
               <button onClick={handleSaveChanges}>保存</button>
               <button onClick={handleDeleteCompany}>削除</button>
               <button onClick={handleCloseModal}>閉じる</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* 削除の確認用モーダル */}
+      {isDeleteModalOpen && (
+        <div style={modalStyle}>
+          <div style={modalContentStyle}>
+            <h2>削除の確認</h2>
+            <p>本当に削除しますか？</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <button onClick={handleConfirmDelete}>はい</button>
+              <button onClick={() => setIsDeleteModalOpen(false)}>いいえ</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 保存の確認用モーダル */}
+      {isSaveModalOpen && (
+        <div style={modalStyle}>
+          <div style={modalContentStyle}>
+            <h2>保存の確認</h2>
+            <p>変更内容を保存しますか？</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <button onClick={handleConfirmSave}>はい</button>
+              <button onClick={() => setIsSaveModalOpen(false)}>いいえ</button>
             </div>
           </div>
         </div>
