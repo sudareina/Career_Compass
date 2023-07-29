@@ -50,6 +50,16 @@ const companiesData = [
     setSelectedCompany(null);
   };
 
+  const handleSaveChanges = () => {
+    // 保存ボタンの処理を実装
+    console.log('変更内容を保存します');
+  };
+
+  const handleDeleteCompany = () => {
+    // 削除ボタンの処理を実装
+    console.log('企業情報を削除します');
+  };
+
   const handleScheduleButtonClick = () => {
     toggleScreen('scheduleList');
   };
@@ -57,7 +67,7 @@ const companiesData = [
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
-      <button onClick={() => toggleScreen()}>企業リスト</button>
+        <button onClick={() => toggleScreen()}>企業リスト</button>
         <button onClick={handleScheduleButtonClick}>スケジュール</button>
         <button onClick={handleLogout}>ログアウト</button>
       </div>
@@ -68,39 +78,80 @@ const companiesData = [
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {companiesData.map((company) => (
           <li key={company.id}>
-          <button
-            style={{
-              width: '100%',
-              textAlign: 'left',
-              border: 'none',
-              background: 'gray', // 背景色を灰色に設定
-              color: 'white', // 文字色を白色に設定
-              padding: '8px',
-              borderRadius: '4px',
-              margin: '4px 0',
-            }}
-            onClick={() => handleCompanyClick(company)}
-          >
-            {company.name} - {company.industry}
-          </button>
-        </li>
+            <button
+              style={{
+                width: '100%',
+                textAlign: 'left',
+                border: 'none',
+                background: 'gray',
+                color: 'white',
+                padding: '8px',
+                borderRadius: '4px',
+                margin: '4px 0',
+              }}
+              onClick={() => handleCompanyClick(company)}
+            >
+              {company.name} - {company.industry}
+            </button>
+          </li>
         ))}
       </ul>
       {selectedCompany && (
         <div style={modalStyle}>
           <div style={modalContentStyle}>
-            <h2>{selectedCompany.name}</h2>
-            <p>業界：{selectedCompany.industry}</p>
-            <p>マイページURL: {selectedCompany.myPageUrl}</p>
-            <p>ID: {selectedCompany.loginId}</p>
-            <p>パスワード: {selectedCompany.password}</p>
-            <p>メモ: {selectedCompany.memo}</p>
-            <p>選考フロー: {selectedCompany.selectionFlow}</p>
-            <button onClick={handleCloseModal}>閉じる</button>
+            <h2>企業情報を編集</h2>
+            <p>名前：</p>
+            <input
+              type="text"
+              value={selectedCompany.name}
+              onChange={(e) => setSelectedCompany({ ...selectedCompany, name: e.target.value })}
+            />
+            <p>業界：</p>
+            <input
+              type="text"
+              value={selectedCompany.industry}
+              onChange={(e) => setSelectedCompany({ ...selectedCompany, industry: e.target.value })}
+            />
+            <p>マイページURL：</p>
+            <input
+              type="text"
+              value={selectedCompany.myPageUrl}
+              onChange={(e) => setSelectedCompany({ ...selectedCompany, myPageUrl: e.target.value })}
+            />
+            <p>ID：</p>
+            <input
+              type="text"
+              value={selectedCompany.loginId}
+              onChange={(e) => setSelectedCompany({ ...selectedCompany, loginId: e.target.value })}
+            />
+            <p>パスワード：</p>
+            <input
+              type="text"
+              value={selectedCompany.password}
+              onChange={(e) => setSelectedCompany({ ...selectedCompany, password: e.target.value })}
+            />
+            <p>メモ：</p>
+            <textarea
+              value={selectedCompany.memo}
+              onChange={(e) => setSelectedCompany({ ...selectedCompany, memo: e.target.value })}
+            />
+            <p>選考フロー：</p>
+            <input
+              type="text"
+              value={selectedCompany.selectionFlow}
+              onChange={(e) =>
+                setSelectedCompany({ ...selectedCompany, selectionFlow: e.target.value })
+              }
+            />
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <button onClick={handleSaveChanges}>保存</button>
+              <button onClick={handleDeleteCompany}>削除</button>
+              <button onClick={handleCloseModal}>閉じる</button>
+            </div>
           </div>
         </div>
-  )}
-  </div>
+      )}
+    </div>
   );
 };
 
@@ -120,6 +171,9 @@ const modalContentStyle = {
   background: 'white',
   padding: '20px',
   borderRadius: '4px',
+  width: '600px', // 任意の横幅に設定する例
+  maxHeight: '80vh', // モーダルの高さが画面の80%まで拡大する例
+  overflowY: 'auto', // コンテンツがはみ出た場合に縦方向にスクロールできるようにする
 };
 
 
