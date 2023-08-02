@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './cc.css';
 
 const ScheduleList = ({ handleLogout, toggleScreen }) => {
   // スケジュールデータ
@@ -157,10 +158,13 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
-        <button onClick={() => toggleScreen()}>企業リスト</button>
-        <button onClick={() => setActiveTab('schedule')}>スケジュール</button>
-        <button onClick={handleLogout}>ログアウト</button>
+      <div className="header">
+        <div className="logo">CareerCompass</div>
+        <div>
+          <button onClick={() => toggleScreen()}>企業リスト</button>
+          <button onClick={() => setActiveTab('schedule')}>スケジュール</button>
+          <button onClick={handleLogout}>ログアウト</button>
+        </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
         <button onClick={handleAddSchedule}>追加</button>

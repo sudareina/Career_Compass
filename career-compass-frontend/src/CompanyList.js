@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './cc.css';
 
 const CompanyList = ({ handleLogout, toggleScreen }) => {
 
@@ -101,10 +102,13 @@ const [companiesData, setCompaniesData] = useState([
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
-        <button onClick={() => toggleScreen()}>企業リスト</button>
-        <button onClick={handleScheduleButtonClick}>スケジュール</button>
-        <button onClick={handleLogout}>ログアウト</button>
+      <div className="header">
+        <div className="logo">CareerCompass</div>
+        <div>
+          <button onClick={() => toggleScreen()}>企業リスト</button>
+          <button onClick={handleScheduleButtonClick}>スケジュール</button>
+          <button onClick={handleLogout}>ログアウト</button>
+        </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
         <button onClick={handleAddCompany}>追加</button>
@@ -132,8 +136,8 @@ const [companiesData, setCompaniesData] = useState([
         ))}
       </ul>
       {selectedCompany && (
-        <div style={modalStyle}>
-          <div style={modalContentStyle}>
+        <div className="edit-modal">
+          <div className="edit-modal-content">
             <h2>企業情報を編集</h2>
             <p>名前：</p>
             <input
@@ -188,8 +192,8 @@ const [companiesData, setCompaniesData] = useState([
       )}
       {/* 削除の確認用モーダル */}
       {isDeleteModalOpen && (
-        <div style={modalStyle}>
-          <div style={modalContentStyle}>
+        <div className="confirm-modal">
+          <div className="confirm-modal-content">
             <h2>削除の確認</h2>
             <p>本当に削除しますか？</p>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -202,8 +206,8 @@ const [companiesData, setCompaniesData] = useState([
 
       {/* 保存の確認用モーダル */}
       {isSaveModalOpen && (
-        <div style={modalStyle}>
-          <div style={modalContentStyle}>
+        <div className="confirm-modal">
+          <div className="confirm-modal-content">
             <h2>保存の確認</h2>
             <p>変更内容を保存しますか？</p>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -216,27 +220,5 @@ const [companiesData, setCompaniesData] = useState([
     </div>
   );
 };
-
-const modalStyle = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  background: 'rgba(0, 0, 0, 0.5)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
-
-const modalContentStyle = {
-  background: 'white',
-  padding: '20px',
-  borderRadius: '4px',
-  width: '600px', // 任意の横幅に設定する例
-  maxHeight: '80vh', // モーダルの高さが画面の80%まで拡大する例
-  overflowY: 'auto', // コンテンツがはみ出た場合に縦方向にスクロールできるようにする
-};
-
 
 export default CompanyList;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './cc.css';
 
 const Register = ({ toggleScreen }) => {
   const [email, setEmail] = useState('');
@@ -23,18 +24,23 @@ const Register = ({ toggleScreen }) => {
 
   return (
     <div>
-      <h2>新規登録画面</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>メールアドレス:</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
-        </div>
-        <div>
-          <label>パスワード:</label>
-          <input type="password" value={password} onChange={handlePasswordChange} />
-        </div>
-        <button type="submit">登録</button>
-      </form>
+      <div className="header">
+        <div className="logo">CareerCompass</div>
+      </div>
+      <div className="login-container"> {/* 修正：login-containerクラスを囲むdivを追加 */}
+        <h2>新規登録</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>メールアドレス</label>
+            <input type="email" value={email} onChange={handleEmailChange} />
+          </div>
+          <div>
+            <label>パスワード</label>
+            <input type="password" value={password} onChange={handlePasswordChange} />
+          </div>
+          <button type="submit">登録</button>
+        </form>
+      </div> {/* 修正：login-containerクラスを囲むdivを閉じる */}
     </div>
   );
 };
