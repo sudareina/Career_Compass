@@ -160,10 +160,10 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
     <div>
       <div className="header">
         <div className="logo">CareerCompass</div>
-        <div>
-          <button onClick={() => toggleScreen()}>企業リスト</button>
-          <button onClick={() => setActiveTab('schedule')}>スケジュール</button>
-          <button onClick={handleLogout}>ログアウト</button>
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <div className="image-company-button" onClick={() => toggleScreen()}></div>
+          <div className="image-schedule-button" onClick={() => setActiveTab('schedule')}></div>
+          <div className="image-user-button" onClick={handleLogout}></div>
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>

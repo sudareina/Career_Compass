@@ -13,6 +13,51 @@
     font-size: 24px;
     font-weight: bold;
   }
+
+  .image-company-button {
+    background: url('/Users/user/Desktop/Webアプリ/cc/Career_Compass/career-compass-frontend/monocompany.png') no-repeat center center;
+    background-size: cover;
+    border: none;
+    width: 60px; /* 画像の適切なサイズに調整 */
+    height: 60px; /* 画像の適切なサイズに調整 */
+    border-radius: 50%; /* 円形にするためにボーダーラジウスを50%に設定 */
+    background-color: white; /* 背景を白に設定 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 円の外側の部分を非表示にする */
+    cursor: pointer;
+  }
+
+  .image-schedule-button {
+    background: url('/Users/user/Desktop/Webアプリ/cc/Career_Compass/career-compass-frontend/monoschedule.png') no-repeat center center;
+    background-size: cover;
+    border: none;
+    width: 60px; /* 画像の適切なサイズに調整 */
+    height: 60px; /* 画像の適切なサイズに調整 */
+    border-radius: 50%; /* 円形にするためにボーダーラジウスを50%に設定 */
+    background-color: white; /* 背景を白に設定 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 円の外側の部分を非表示にする */
+    cursor: pointer;
+  }
+
+  .image-user-button {
+    background: url('/Users/user/Desktop/Webアプリ/cc/Career_Compass/career-compass-frontend/monouser.png') no-repeat center center;
+    background-size: cover;
+    border: none;
+    width: 60px; /* 画像の適切なサイズに調整 */
+    height: 60px; /* 画像の適切なサイズに調整 */
+    border-radius: 50%; /* 円形にするためにボーダーラジウスを50%に設定 */
+    background-color: white; /* 背景を白に設定 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 円の外側の部分を非表示にする */
+    cursor: pointer;
+  }
   
   /* ログインフォームのコンテナのスタイル */
 .login-container {
