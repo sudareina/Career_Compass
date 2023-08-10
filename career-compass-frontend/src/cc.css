@@ -181,3 +181,21 @@
   div.confirm-modal-content button {
     margin-right: 10px;
   }
+
+  /* 一覧のボタンスタイル */
+.list-button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background-color: gray;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 4px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.company-button:hover {
+  background-color: darkgray;
+}

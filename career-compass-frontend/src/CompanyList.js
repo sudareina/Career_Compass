@@ -118,16 +118,7 @@ const [companiesData, setCompaniesData] = useState([
         {companiesData.map((company) => (
           <li key={company.id}>
             <button
-              style={{
-                width: '100%',
-                textAlign: 'left',
-                border: 'none',
-                background: 'gray',
-                color: 'white',
-                padding: '8px',
-                borderRadius: '4px',
-                margin: '4px 0',
-              }}
+              className="list-button"
               onClick={() => handleCompanyClick(company)}
             >
               {company.name} - {company.industry}

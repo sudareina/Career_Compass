@@ -185,16 +185,7 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
             {schedulesData.map((item) => (
               <li key={item.id}>
                 <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    border: 'none',
-                    background: 'gray',
-                    color: 'white',
-                    padding: '8px',
-                    borderRadius: '4px',
-                    margin: '4px 0',
-                  }}
+                  className="list-button"
                   onClick={() => handleItemClick(item)}
                 >
                   {item.schedule} - {item.startTime} ~ {item.endTime}
@@ -211,16 +202,7 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
             {esData.map((item) => (
               <li key={item.id}>
                 <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    border: 'none',
-                    background: 'gray',
-                    color: 'white',
-                    padding: '8px',
-                    borderRadius: '4px',
-                    margin: '4px 0',
-                  }}
+                  className="list-button"
                   onClick={() => handleItemClick(item)}
                 >
                   {item.content} - {item.deadline}
@@ -237,16 +219,7 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
             {webtestData.map((item) => (
               <li key={item.id}>
                 <button
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    border: 'none',
-                    background: 'gray',
-                    color: 'white',
-                    padding: '8px',
-                    borderRadius: '4px',
-                    margin: '4px 0',
-                  }}
+                  className="list-button"
                   onClick={() => handleItemClick(item)}
                 >
                   {item.url} - {item.deadline}
@@ -258,8 +231,8 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
       )}
 
       {selectedItem && (
-        <div style={modalStyle}>
-          <div style={modalContentStyle}>
+        <div className="edit-modal">
+          <div className="edit-modal-content">
             {activeTab === 'schedule' && (
               <>
                 <h2>{selectedItem.id ? 'スケジュール詳細' : '新しいスケジュールを追加'}</h2>
@@ -354,8 +327,8 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
 
       {/* 保存の確認用モーダル */}
       {isSaveModalOpen && (
-        <div style={modalStyle}>
-          <div style={modalContentStyle}>
+        <div className="confirm-modal">
+          <div className="confirm-modal-content">
             <h2>保存の確認</h2>
             <p>変更内容を保存しますか？</p>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -368,8 +341,8 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
 
       {/* 削除の確認用モーダル */}
       {isDeleteModalOpen && (
-        <div style={modalStyle}>
-          <div style={modalContentStyle}>
+        <div className="confirm-modal">
+          <div className="confirm-modal-content">
             <h2>削除の確認</h2>
             <p>この項目を削除しますか？</p>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -382,27 +355,6 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
 
     </div>
   );
-};
-
-const modalStyle = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  background: 'rgba(0, 0, 0, 0.5)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
-
-const modalContentStyle = {
-  background: 'white',
-  padding: '20px',
-  borderRadius: '4px',
-  width: '600px', // 任意の横幅に設定する例
-  maxHeight: '80vh', // モーダルの高さが画面の80%まで拡大する例
-  overflowY: 'auto', // コンテンツがはみ出た場合に縦方向にスクロールできるようにする
 };
 
 export default ScheduleList;
