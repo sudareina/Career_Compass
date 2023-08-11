@@ -108,9 +108,9 @@ const [companiesData, setCompaniesData] = useState([
       <div className="header">
         <div className="logo">CareerCompass</div>
         <div style={{ display: 'flex', gap: '15px' }}>
-          <div className="image-company-button" onClick={handleCompanyButtonClick}></div>
-          <div className="image-schedule-button" onClick={handleScheduleButtonClick}></div>
-          <div className="image-user-button" onClick={handleLogout}></div>
+          <div className="image-company-button" onClick={handleCompanyButtonClick} title="企業一覧"></div>
+          <div className="image-schedule-button" onClick={handleScheduleButtonClick} title="予定一覧"></div>
+          <div className="image-user-button" onClick={handleLogout} title="ログアウト"></div>
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
@@ -132,42 +132,62 @@ const [companiesData, setCompaniesData] = useState([
       {selectedCompany && (
         <div className="edit-modal">
           <div className="edit-modal-content">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <h2>企業情報を編集</h2>
-            <p>名前：</p>
+            <div>
+              <button style={{ marginRight: '10px' }}>+ Schedule</button>
+              <button style={{ marginRight: '10px' }}>+ ES</button>
+              <button style={{ marginRight: '10px' }}>+ Webtest</button>
+            </div>
+            </div>
+            <div style={{ display: 'flex' }}>
+            <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <p style={{ width: '80px' }}>企業名
             <input
               type="text"
               value={selectedCompany.name}
               onChange={(e) => setSelectedCompany({ ...selectedCompany, name: e.target.value })}
             />
-            <p>業界：</p>
+            </p></div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <p style={{ width: '80px' }}>業界
             <input
               type="text"
               value={selectedCompany.industry}
               onChange={(e) => setSelectedCompany({ ...selectedCompany, industry: e.target.value })}
             />
-            <p>マイページURL：</p>
+            </p></div>
+            <p>マイページ</p>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <p style={{ width: '80px' }}>URL
             <input
               type="text"
               value={selectedCompany.myPageUrl}
               onChange={(e) => setSelectedCompany({ ...selectedCompany, myPageUrl: e.target.value })}
-            />
-            <p>ID：</p>
+            /></p></div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <p style={{ width: '80px' }}>ID
             <input
               type="text"
               value={selectedCompany.loginId}
               onChange={(e) => setSelectedCompany({ ...selectedCompany, loginId: e.target.value })}
-            />
-            <p>パスワード：</p>
+            /></p></div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <p style={{ width: '80px' }}>パスワード
             <input
               type="text"
               value={selectedCompany.password}
               onChange={(e) => setSelectedCompany({ ...selectedCompany, password: e.target.value })}
-            />
-            <p>メモ：</p>
+            /></p></div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <p style={{ width: '80px' }}>メモ
             <textarea
               value={selectedCompany.memo}
               onChange={(e) => setSelectedCompany({ ...selectedCompany, memo: e.target.value })}
-            />
+            /></p></div>
+            </div>
+            <div style={{ flex: 1 }}>
             <p>選考フロー：</p>
             <input
               type="text"
@@ -176,6 +196,8 @@ const [companiesData, setCompaniesData] = useState([
                 setSelectedCompany({ ...selectedCompany, selectionFlow: e.target.value })
               }
             />
+            </div>
+            </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button onClick={handleSaveChanges}>保存</button>
               <button onClick={handleDeleteCompany}>削除</button>

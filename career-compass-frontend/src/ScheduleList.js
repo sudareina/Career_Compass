@@ -172,10 +172,10 @@ const ScheduleList = ({ handleLogout, toggleScreen }) => {
       <h1>スケジュール一覧</h1>
 
       {/* 新しいスケジュールボタン */}
-      <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px' }}>
-        <button onClick={() => setActiveTab('schedule')}>スケジュール</button>
-        <button onClick={() => setActiveTab('es')}>ES</button>
-        <button onClick={() => setActiveTab('webtest')}>Webテスト</button>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px', gap: '2px' }}>
+        <button style={{ width: '100px' }} onClick={() => setActiveTab('schedule')}>スケジュール</button>
+        <button style={{ width: '100px' }} onClick={() => setActiveTab('es')}>ES</button>
+        <button style={{ width: '100px' }} onClick={() => setActiveTab('webtest')}>Webテスト</button>
       </div>
 
       {/* スケジュールの内容を表示する部分 */}
