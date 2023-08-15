@@ -12,7 +12,7 @@ const [companiesData, setCompaniesData] = useState([
     loginId: 'companyAuser',
     password: 'password123',
     memo: '企業Aに関するメモです。',
-    selectionFlow: '1次面接 → 書類選考 → 最終面接',
+    selectionFlow: ['1次面接'] ,
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const [companiesData, setCompaniesData] = useState([
     loginId: 'companyBuser',
     password: 'password456',
     memo: '企業Bに関するメモです。',
-    selectionFlow: '書類選考 → 1次面接 → 2次面接',
+    selectionFlow: ['書類選考'],
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const [companiesData, setCompaniesData] = useState([
     loginId: 'companyCuser',
     password: 'password789',
     memo: '企業Cに関するメモです。',
-    selectionFlow: '1次面接 → SPI試験 → 最終面接',
+    selectionFlow: ['1次面接'],
   },
 ]);
 
@@ -94,6 +94,28 @@ const [companiesData, setCompaniesData] = useState([
     setSelectedCompany(null);
     setIsDeleteModalOpen(false);
     setIsSaveModalOpen(false);
+  };
+
+  const handleAddSelectionFlow = () => {
+    if (selectedCompany) {
+      // 現在の選考フローに新しい空の選考フローを追加
+      const updatedSelectionFlow = [...selectedCompany.selectionFlow, ''];
+      setSelectedCompany({
+        ...selectedCompany,
+        selectionFlow: updatedSelectionFlow,
+      });
+    }
+  };
+
+  const handleSelectionFlowChange = (index, value) => {
+    if (selectedCompany) {
+      const updatedSelectionFlow = [...selectedCompany.selectionFlow];
+      updatedSelectionFlow[index] = value;
+      setSelectedCompany({
+        ...selectedCompany,
+        selectionFlow: updatedSelectionFlow,
+      });
+    }
   };
 
   const handleScheduleButtonClick = () => {
@@ -188,14 +210,17 @@ const [companiesData, setCompaniesData] = useState([
             /></p></div>
             </div>
             <div style={{ flex: 1 }}>
-            <p>選考フロー：</p>
-            <input
-              type="text"
-              value={selectedCompany.selectionFlow}
-              onChange={(e) =>
-                setSelectedCompany({ ...selectedCompany, selectionFlow: e.target.value })
-              }
-            />
+            <p>選考フロー
+            <button onClick={handleAddSelectionFlow} style={{ marginRight: '10px' }}>+ 選考フロー</button>
+            </p>
+            {selectedCompany.selectionFlow.map((flow, index) => (
+              <input
+                key={index}
+                type="text"
+                value={flow}
+                onChange={(e) => handleSelectionFlowChange(index, e.target.value)}
+              />
+            ))}
             </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
